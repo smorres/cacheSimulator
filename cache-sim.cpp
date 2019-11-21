@@ -240,7 +240,7 @@ long long setAssociativeWithNextLinePrefetching(int cacheSize, vector<instructio
 			cache[newJ][cacheIndex].count = i;
 		}
 		
-		cacheIndex = (cacheIndex + 1) % entries;
+		cacheIndex = (cacheIndex + 1) % entries;//not sure how to correctl update cacheIndex
 		base++;
 		bool nextLineHit = false;
 		//Check if the nextline is already in-place
