@@ -93,7 +93,12 @@ long long setAssociative(int cacheSize, vector<instructions> instr, ofstream & o
 		}
 		
 	}
-	outfile << hit << "," << refrences << "; ";
+	if(numWays != 16){
+		outfile << hit << "," << refrences << "; ";
+	}
+	else{
+		outfile << hit << "," << refrences << "; "<<endl;
+	}
 	cout<<"set assoc hits: " << hit<<endl;	
 	return hit;
 }
@@ -140,7 +145,8 @@ long long fullAssociativeLRU(int cacheSize, vector<instructions> instr, ofstream
 		}
 		
 	}
-	outfile << hit << "," << refrences << "; ";
+	outfile << hit << "," << refrences << "; "<<endl;
+
 	cout<<"fully assoc lru: " << hit<<endl;	
 	return hit;
 }
@@ -218,7 +224,9 @@ long long fullAssociativeHotCold(int cacheSize, vector<instructions> instr, ofst
 		}
 		
 	}
-	outfile << hit << "," << refrences << "; ";
+
+	outfile << hit << "," << refrences << "; "<<endl;
+	
 	cout<<"fully assoc hotCold: " << hit<<endl;	
 	return hit;
 }
@@ -270,7 +278,12 @@ long long setAssociativeNoAlloc(int cacheSize, vector<instructions> instr, ofstr
 		}
 		
 	}
-	outfile << hit << "," << refrences << "; ";
+	if(numWays != 16){
+		outfile << hit << "," << refrences << "; ";
+	}
+	else{
+		outfile << hit << "," << refrences << "; "<<endl;
+	}
 	cout<<"no alloc hits: " << hit<<endl;	
 	return hit;
 }
@@ -341,7 +354,12 @@ long long setAssociativeWithNextLinePrefetching(int cacheSize, vector<instructio
 		}
 		
 	}
-	outfile << hit << "," << refrences << "; "<<endl;
+	if(numWays != 16){
+		outfile << hit << "," << refrences << "; ";
+	}
+	else{
+		outfile << hit << "," << refrences << "; "<<endl;
+	}
 	cout<<"next line next line hits: " << hit<<endl;	
 	return hit;
 }
@@ -415,7 +433,12 @@ long long setAssociativePrefetchOnMiss(int cacheSize, vector<instructions> instr
 	
 		
 	}
-	outfile << hit << "," << refrences << "; "<<endl;
+	if(numWays != 16){
+		outfile << hit << "," << refrences << "; ";
+	}
+	else{
+		outfile << hit << "," << refrences << "; "<<endl;
+	}
 	cout<<"next line preMiss hits: " << hit<<endl;	
 	return hit;
 }
@@ -440,7 +463,7 @@ int main(int argc, char *argv[]){
 	setAssociative(16384,instr, outfile, 4);
 	setAssociative(16384,instr, outfile, 8);
 	setAssociative(16384,instr, outfile, 16);
-	//fullAssociativeLRU(16384, instr, outfile);
+	fullAssociativeLRU(16384, instr, outfile);
 	fullAssociativeHotCold(16384, instr, outfile);
 	setAssociativeNoAlloc(16384, instr, outfile, 2);
 	setAssociativeNoAlloc(16384, instr, outfile, 4);
